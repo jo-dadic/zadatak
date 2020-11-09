@@ -6,17 +6,16 @@ import "./App.css";
 import Search from "./components/Search/Search";
 import Albums from "./components/Albums/Albums";
 import Artists from "./components/Artists/Artists";
+import ArtistPage from "./components/ArtistPage/ArtistPage";
 
 export default class App extends Component {
   state = {
     albums: [],
     artists: [],
-    artistId: 0,
-    id: 0,
   };
 
   resultsHandler = (data, dataA) => {
-    this.setState({ albums: data, artistId: data, artists: dataA, id: dataA });
+    this.setState({ albums: data, artists: dataA });
     console.log(data, dataA);
   };
 
@@ -28,32 +27,11 @@ export default class App extends Component {
           <Artists dataA={this.state.artists} />
           <Albums data={this.state.albums} />
         </Route>
+
+        <Route path="/artist" exact>
+          <ArtistPage dataA={this.state.artists} />
+        </Route>
       </div>
     );
   }
-
-  // render() {
-  //   let showing = (
-  //     <div>
-  //       <Artists dataA={this.state.artists} />
-  //       <Albums data={this.state.albums} />
-  //     </div>
-  //   );
-  //   if (this.state.artistId === this.state.id) {
-  //     return showing;
-  //   }
-
-  //   return (
-  //     <div className="App">
-  //       <Route path="/" exact>
-  //         <Search onResult={this.resultsHandler} />
-  //         {showing}
-  //         <p>Helooooooo</p>
-  //       </Route>
-  //       {/* <Route path="/artist" exact>
-  //         <IndividualArtist data={this.state.results} />
-  //       </Route> */}
-  //     </div>
-  //   );
-  // }
 }

@@ -18,14 +18,6 @@ export default class Search extends Component {
       this.props.onResult(data, dataA);
       this.setState({ query: "" });
     });
-
-    // fetch(apiUrl + this.state.query)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     this.props.onResult(data);
-    //     console.log(data);
-    //     this.setState({ query: "" });
-    //   });
   };
 
   queryChangeHandler = (e) => {

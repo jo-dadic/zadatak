@@ -1,7 +1,6 @@
 import React from "react";
 
 import AlbumItem from "../AlbumItem/AlbumItem";
-// import Artists from "../Artists/Artists";
 
 export default function Albums({ data }) {
   return (
@@ -19,9 +18,6 @@ export default function Albums({ data }) {
           </div>
         );
       })}
-      {/* {dataA.map((item) => {
-        return <Artists key={item.id} artistName={item.title} />;
-      })} */}
     </div>
   );
 }
