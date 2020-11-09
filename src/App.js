@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+import Search from "./components/Search/Search";
+import Albums from "./components/Albums/Albums";
+import Artists from "./components/Artists/Artists";
+
+export default class App extends Component {
+  state = {
+    albums: [],
+    artists: [],
+    artistId: 0,
+    id: 0,
+  };
+
+  resultsHandler = (data, dataA) => {
+    this.setState({ albums: data, artistId: data, artists: dataA, id: dataA });
+    console.log(data, dataA);
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Route path="/" exact>
+          <Search onResult={this.resultsHandler} />
+          <Artists dataA={this.state.artists} />
+          <Albums data={this.state.albums} />
+        </Route>
+      </div>
+    );
+  }
+
+  // render() {
+  //   let showing = (
+  //     <div>
+  //       <Artists dataA={this.state.artists} />
+  //       <Albums data={this.state.albums} />
+  //     </div>
+  //   );
+  //   if (this.state.artistId === this.state.id) {
+  //     return showing;
+  //   }
+
+  //   return (
+  //     <div className="App">
+  //       <Route path="/" exact>
+  //         <Search onResult={this.resultsHandler} />
+  //         {showing}
+  //         <p>Helooooooo</p>
+  //       </Route>
+  //       {/* <Route path="/artist" exact>
+  //         <IndividualArtist data={this.state.results} />
+  //       </Route> */}
+  //     </div>
+  //   );
+  // }
 }
-
-export default App;
